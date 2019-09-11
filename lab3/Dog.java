@@ -9,4 +9,8 @@ public class Dog extends Animal {
 		legs = l;
 		
 	}
+
+	public String toString() {
+		return name + " has " + legs + " legs";
+	}
 }
