@@ -6,7 +6,7 @@ package lab4;
  * cisc275
  */
 
-import javafx.scene.image.Image;
+
 
 public class Model {
 	double xloc = 0;
@@ -37,7 +37,7 @@ public class Model {
     	if(xloc <=0) {
     		xIncr = -(xIncr);
     	}
-    	if(yloc >= canvasHeight-140) {
+    	if(yloc >= canvasHeight-130) {
     		yIncr = -(yIncr);
     	} 
     	if(yloc <=0) {
@@ -51,10 +51,10 @@ public class Model {
 	
 	public String getDirection() {
 		
-		if(xIncr < 0 && yIncr < 0) return "orc_forward_northwest.png";
-    	else if(xIncr > 0 && yIncr > 0 ) return  "orc_forward_southeast.png";
-    	else if(xIncr < 0 && yIncr > 0) return "orc_forward_southwest.png";
-    	else return "orc_forward_northeast.png";
+		if(xIncr < 0 && yIncr < 0) return "northwest";
+    	else if(xIncr > 0 && yIncr > 0 ) return  "southeast";
+    	else if(xIncr < 0 && yIncr > 0) return "southwest";
+    	else return "northeast";
 		
 	}
 	
