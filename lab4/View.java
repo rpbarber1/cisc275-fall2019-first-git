@@ -1,5 +1,7 @@
 package lab4;
 
+import java.util.HashMap;
+
 /*
  * Ryan Barber
  * Lab4 
@@ -20,7 +22,10 @@ public class View {
     final static int canvasHeight = 300;
     final static int imgWidth = 165;
     final static int imgHeight = 165;
-    Image orc_img = createImage("orc_forward_southeast.png");
+    
+    HashMap<String,Image> imageMap = new HashMap<String, Image>();
+    Image orc_img;
+    
     
     GraphicsContext gc;
 
@@ -34,6 +39,9 @@ public class View {
         Canvas canvas = new Canvas(canvasWidth, canvasHeight);
         root.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
+        
+        readImages(imageMap);
+        orc_img = getImage("southeast");
 		
 	}
 
@@ -54,7 +62,7 @@ public class View {
 	}
 
 	public void update(double x, double y, String dir) {
-		orc_img = createImage(dir);
+		orc_img = getImage(dir);
 		
 		// Clear the canvas
         gc.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -66,15 +74,30 @@ public class View {
 		
 	}
 	
-	//Read image from file and return
+	//get correct image from map of images.
     private Image createImage(String pngName) {
-        Image img = new Image("images/orc/" + pngName);
-        return img;   	
+    	
+    	Image img = new Image("images/orc/" + pngName);
+        return img;
+           	
     	// TODO: Change this method so you can load other orc animation bitmaps
         
-        //Created String parameter that takes png file name.
+        //Created String parameter that string which is a key for image map.
     }
 	
-
+    // Read in all images to map.
+    public void readImages(HashMap<String,Image> i) {
+    	imageMap.put("southwest", createImage("orc_forward_southwest.png"));
+    	imageMap.put("northwest", createImage("orc_forward_northwest.png"));
+    	imageMap.put("northeast", createImage("orc_forward_northeast.png"));
+    	imageMap.put("southeast", createImage("orc_forward_southeast.png"));
+    	
+    	
+    }
+    
+    public Image getImage(String s) {
+    	return imageMap.get(s);
+    }
 
 }
+
